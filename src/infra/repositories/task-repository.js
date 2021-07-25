@@ -1,21 +1,15 @@
 const Task = require('../../domain/task/task')
-class TaskRepository {
-    constructor({db}) {
-        this.db = db
+const Repository = require('./repository')
+class TaskRepository extends Repository {
+    constructor({db}){
+        super({db})
+        this.model= this.db.Task
     }
     async findAll() {
-        const tasks = await this.db.Task.findAll()
+        const tasks = await this.model.findAll()
         return tasks.map((val) => {
             return this.toDomain(val)
         })
-    }
-    async findById(id) {
-        const task = await this.db.Task.findByPk(id)
-        return this.toDomain(task)
-    }
-    async create(domain) {
-        const task = await this.db.Task.create(domain)
-        return this.toDomain(task)
     }
     toDomain(document) {
         const { id, title, description, status, createdAt, updatedAt } = document

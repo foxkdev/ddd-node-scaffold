@@ -14,7 +14,7 @@ class Server {
     }
     start() {
         return new Promise((resolve, reject) => {
-            const server = this.app.listen(process.env.NODE_PORT, (error) => {
+            const server = this.app.listen(process.env.NODE_PORT || 3000, (error) => {
                 const { port } = server.address()
                 if(error) reject(error)
                 console.log(`🤘 API - Port ${port}`)

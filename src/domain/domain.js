@@ -1,3 +1,5 @@
+const FieldEmptyError = require("./errors/field-empty-error")
+
 class Domain {
     constructor({requireds = null}) {
         this.requireds = requireds
@@ -11,7 +13,7 @@ class Domain {
                 Object.defineProperty(this, prop, {
                     set: (newVal) => {
                         if(!newVal) {
-                            throw new Error('field empty')
+                            throw new FieldEmptyError(`field ${prop} empty`)
                         }
                         this[`_${prop}`] = newVal
                     },
