@@ -1,5 +1,5 @@
 require('dotenv').config()
-const Server = require('./src/server')
+const Server = require('./server')
 const server = new Server()
 server.start().catch((error) => {
     console.error(error.stack)

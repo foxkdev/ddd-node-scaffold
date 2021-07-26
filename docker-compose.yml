@@ -1,6 +1,13 @@
 version: '3.7'
 services:
-  postgress:
+  api:
+    build: .
+    ports:
+      - 3002:3000
+    volumes:
+      - ./src:/usr/src/app
+    command: npm run dev
+  postgres:
     image: bitnami/postgresql
     ports:
       - 5432:5432

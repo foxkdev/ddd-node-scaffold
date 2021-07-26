@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
@@ -23,4 +24,9 @@ class Server {
         })
     }
 }
-module.exports = Server
+
+const server = new Server()
+server.start().catch((error) => {
+    console.error(error.stack)
+    process.exit()
+})
